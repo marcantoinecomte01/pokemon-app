@@ -47,7 +47,3 @@ watch: {
   }
 }
 </script>
-
-<style>
-
-</style>
