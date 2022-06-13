@@ -5,8 +5,8 @@
     <h5 class="card-title">{{pokemonInfo.id}}.{{pokemonInfo.name}}</h5>
     <p class="card-text">
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Weight: {{pokemonInfo.weight}}</li>
-      <li class="list-group-item">Height: {{pokemonInfo.height}}</li>
+      <li class="list-group-item">{{t ("weight-property")}} {{pokemonInfo.weight}}</li>
+      <li class="list-group-item">{{t ("height-property")}} {{pokemonInfo.height}}</li>
     </ul>
     </p>
   </div>
@@ -14,9 +14,19 @@
 </template>
 
 <script>
+import { useI18n } from 'vue-i18n'
 
 export default {
+
   name: 'PokemonProfile',
+    setup() {
+    const { locale, t } = useI18n({
+      inheritLocale: true,
+    })
+    return {
+      locale, t
+    }
+  },
   props: [ 'pokemon' ],
   data() {
     let pokemonInfo = {};

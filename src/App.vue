@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">{{ t("pokemon-app") }}</a>
+      <a class="navbar-brand" href="#/load-more">{{ t("pokemon-app") }}</a>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
@@ -9,7 +9,7 @@
               {{t("navigation-type")}}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="btn btn-light border-bottom-secondary" href="#/load-more">{{ t("load-more") }}</a></li>
+              <li><a class="btn btn-light" href="#/load-more">{{ t("load-more") }}</a></li>
               <li><a class="btn btn-light" href="#/pagination">{{ t("pagination") }}</a></li>
             </ul>
           </li>
