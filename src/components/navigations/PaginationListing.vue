@@ -39,10 +39,14 @@ watch: {
   },
   methods:{
     getPokemonList(){
-      this.pokemonList = [];
-      this.axios.get(`${this.url}?offset=${(this.page - 1)*30}&limit=30`).then((response) => {
-        this.pokemonList = response.data.results;
-      });
+      try {
+        this.pokemonList = [];
+        this.axios.get(`${this.url}?offset=${(this.page - 1)*30}&limit=30`).then((response) => {
+          this.pokemonList = response.data.results;
+        });
+      } catch {
+        this.pokemonList = [];
+      }
     }
   }
 }

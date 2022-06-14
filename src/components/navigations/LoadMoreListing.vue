@@ -34,12 +34,12 @@ export default {
     getCards(url){
       try {
         if(this.pokemonList.length < this.maxLengthList){
-        this.axios.get(url).then((response) => {
-          let data = response.data;
-          this.pokemonList.push(...data.results);
-          this.nextUrl = data.next;
-        });
-      }  
+          this.axios.get(url).then((response) => {
+            let data = response.data;
+            this.pokemonList.push(...data.results);
+            this.nextUrl = data.next;
+          });
+        }  
       }
       catch{
         this.pokemonList = []
