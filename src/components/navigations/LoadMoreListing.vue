@@ -1,12 +1,12 @@
 <template>
   <div class="container my-5">
     <div class="row">
-        <div v-for="pokemon in pokemonList" v-bind:key="pokemon.name" class="col-2 m-2">
+        <div id="pokemonCardList" v-for="pokemon in pokemonList" v-bind:key="pokemon.name" class="col-2 m-2">
             <PokemonProfile :pokemon="pokemon"></PokemonProfile>
         </div>
     </div>
     <div class="row">
-      <button class="btn btn-primary col-11" :disabled="pokemonList.length==150" @click="loadMore">Load more</button>
+      <button class="btn btn-primary col-11" :disabled="pokemonList.length==maxLengthList" @click="loadMore">Load more</button>
     </div>
   </div>
 </template>
@@ -23,7 +23,8 @@ export default {
     return {
       pokemonList: [],
       initialUrl: "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30",
-      nextUrl: ""
+      nextUrl: "",
+      maxLengthList: 150 
     }
   },
   mounted() {
@@ -31,12 +32,17 @@ export default {
   },
   methods:{
     getCards(url){
-      if(this.pokemonList.length < 150){
+      try {
+        if(this.pokemonList.length < this.maxLengthList){
         this.axios.get(url).then((response) => {
           let data = response.data;
           this.pokemonList.push(...data.results);
           this.nextUrl = data.next;
         });
+      }  
+      }
+      catch{
+        this.pokemonList = []
       }
     },
     loadMore(){

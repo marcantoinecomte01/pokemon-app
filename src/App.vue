@@ -1,16 +1,16 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#/load-more">{{ t("pokemon-app") }}</a>
+      <a class="navbar-brand" id="navbarBrand" href="#/load-more">{{ t("pokemon-app") }}</a>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navigationDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{t("navigation-type")}}
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="btn btn-light" href="#/load-more">{{ t("load-more") }}</a></li>
-              <li><a class="btn btn-light" href="#/pagination">{{ t("pagination") }}</a></li>
+            <ul class="dropdown-menu" id="navigationDropDownMenu" aria-labelledby="navigationDropDown">
+              <li><a class="btn btn-light" id="loadMoreLink" href="#/load-more">{{ t("load-more") }}</a></li>
+              <li><a class="btn btn-light" id="paginationLink" href="#/pagination">{{ t("pagination") }}</a></li>
             </ul>
           </li>
         </ul>

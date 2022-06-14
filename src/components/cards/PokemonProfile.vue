@@ -1,12 +1,12 @@
 <template>
-  <div class="card">
-  <img :src="imageUrl" class="card-img-top">
+  <div id="pokemonProfileCard" class="card">
+  <img :src="imageUrl" id="pokemonImage" class="card-img-top">
   <div class="card-body">
-    <h5 class="card-title">{{pokemonInfo.id}}.{{pokemonInfo.name}}</h5>
+    <h5 id="pokemonNameTitle" class="card-title">{{pokemonInfo.id}}.{{pokemonInfo.name}}</h5>
     <p class="card-text">
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{t ("weight-property")}} {{pokemonInfo.weight}}</li>
-      <li class="list-group-item">{{t ("height-property")}} {{pokemonInfo.height}}</li>
+      <li id="pokemonWeight" class="list-group-item">{{t ("weight-property")}} {{pokemonInfo.weight}}</li>
+      <li id="pokemonHeight" class="list-group-item">{{t ("height-property")}} {{pokemonInfo.height}}</li>
     </ul>
     </p>
   </div>
@@ -29,18 +29,22 @@ export default {
   },
   props: [ 'pokemon' ],
   data() {
-    let pokemonInfo = {};
-    let imageUrl = "";
     return {
-      pokemonInfo,
-      imageUrl
+      pokemonInfo: {},
+      imageUrl: ""
     }
   },
   mounted() {
-    this.axios.get(this.pokemon.url).then((response) => {
+    try {
+      this.axios.get(this.pokemon.url).then((response) => {
       this.pokemonInfo = response.data;
       this.imageUrl = this.pokemonInfo.sprites.front_default;
     });
+    } catch  {
+      this.pokemonInfo = {};
+      this.imageUrl = "";
+    }
+
   },
 }
 </script>
