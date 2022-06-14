@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-6 offset-7">
-        <pagination v-model="page" :records="150" :per-page="30" />
+        <pagination v-model="page" :records="maximumListLength" :per-page="limitPerPage" />
       </div>
     </div>
   </div>
@@ -22,11 +22,14 @@ export default {
   components: {
     PokemonProfile, Pagination
   },
+
   data() {
     return {
       pokemonList: [],
       url: "https://pokeapi.co/api/v2/pokemon/",
-      page:1
+      page:1,
+      limitPerPage: 30,
+      maximumListLength: 150
     }
   },
   mounted() {
@@ -41,7 +44,7 @@ watch: {
     getPokemonList(){
       try {
         this.pokemonList = [];
-        this.axios.get(`${this.url}?offset=${(this.page - 1)*30}&limit=30`).then((response) => {
+        this.axios.get(`${this.url}?offset=${(this.page - 1)*this.limitPerPage}&limit=${this.limitPerPage}`).then((response) => {
           this.pokemonList = response.data.results;
         });
       } catch {

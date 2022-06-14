@@ -6,18 +6,26 @@
         </div>
     </div>
     <div class="row">
-      <button class="btn btn-primary col-11" :disabled="pokemonList.length==maxLengthList" @click="loadMore">Load more</button>
+      <button class="btn btn-primary col-11" :disabled="pokemonList.length==maxLengthList" @click="loadMore">{{ t("load-more") }}</button>
     </div>
   </div>
 </template>
 
 <script>
 import PokemonProfile from '../cards/PokemonProfile.vue'
-
+import { useI18n } from 'vue-i18n'
 export default {
   name: 'LoadMoreListing',
   components: {
     PokemonProfile
+  },
+  setup() {
+    const { locale, t } = useI18n({
+      inheritLocale: true,
+    })
+    return {
+      locale, t
+    }
   },
   data() {
     return {
